@@ -1,0 +1,22 @@
+package appaps;
+
+public class Eletronico extends Produto {
+    
+    private String voltagem, classificacaoEficiencia;
+    private int potencia;
+
+    public Eletronico(int codigo, int quantidade, String nome, String fabricante, double valorUnid, 
+            String voltagem, String classificacaoEficiencia, int potencia) {
+        super(codigo, quantidade, nome, fabricante, valorUnid);
+        this.voltagem = voltagem;
+        this.classificacaoEficiencia = classificacaoEficiencia;
+        this.potencia = potencia;   
+    }
+    
+    @Override
+    public String imprimir() {
+        return super.imprimir() + "\nVoltagem: " + voltagem + "\nClassificacao Eficiencia: " + classificacaoEficiencia +
+                "\nPotencia: " + potencia;
+    }
+        
+}

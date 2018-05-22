@@ -1,0 +1,17 @@
+package appaps;
+
+public class Movel extends Produto {
+    
+    private String tipoMaterial;
+
+    public Movel(int codigo, int quantidade, String nome, String fabricante, double valorUnid, String tipoMaterial) {
+        super(codigo, quantidade, nome, fabricante, valorUnid);
+        this.tipoMaterial = tipoMaterial;
+    }
+    
+    @Override
+    public String imprimir() {
+        return super.imprimir() + "\nTipo de Material: " + tipoMaterial;
+    }
+    
+}

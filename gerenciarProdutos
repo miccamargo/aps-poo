@@ -1,0 +1,107 @@
+package appaps;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+public class gerenciarProdutos {
+    
+    private ArrayList<Produto> produtos = new ArrayList<>();
+    
+    public gerenciarProdutos() {
+        produtos = new ArrayList<>();
+    }
+    
+    public void adicionarProduto(Produto p) {
+        produtos.add(p);
+    }
+    
+    public boolean removerProduto(int codigo) {
+        for (int i = 0; i < produtos.size(); i++) {
+            if(produtos.get(i).getCodigo() == codigo) {
+                produtos.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public Produto buscarPorCodigo(int codigo) {
+        for (int i = 0; i < produtos.size(); i++) {
+            if(produtos.get(i).getCodigo() == codigo) {
+                return produtos.get(i);
+            }
+        }
+        return null;
+    }
+    
+    public String listarEletronicos() {
+        String saida = "";
+        
+        for(int i = 0; i < produtos.size(); i++) {
+            if(produtos.get(i) instanceof Eletronico)
+                saida += produtos.get(i).imprimir() + "\n";
+        }
+        return saida;
+    }
+    
+    public String listarPereciveis() {
+        String saida = "";
+        
+        for(int i = 0; i < produtos.size(); i++) {
+            if(produtos.get(i) instanceof PerecÃ­vel)
+                saida += produtos.get(i).imprimir() + "\n";
+        }
+        return saida;
+    }
+    
+    public String listarMoveis() {
+        String saida = "";
+        
+        for(int i = 0; i < produtos.size(); i++) {
+            if(produtos.get(i) instanceof Movel)
+                saida += produtos.get(i).imprimir() + "\n";
+        }
+        return saida;
+    }
+    
+    public String listarEstoqueMenorQue(int quantidadeMinima) {
+        
+    }
+    
+    public String listarEstoqueVazio() {
+        
+    }
+    
+    public String listarPorFabricantes(String fabricante) {
+        String saida = "";
+        
+        for (int i = 0; i < produtos.size(); i++) {
+            if(produtos.get(i).getFabricante().equalsIgnoreCase(fabricante)) {
+                saida = saida + produtos.get(i).imprimir() + "\n\n";
+            }
+        }
+        return saida;
+    }
+    
+    public String listarPorValidade(LocalDate validade) {
+        
+    }
+    
+    public double venderProduto(int codigo, int quantidade) {
+        
+    }
+    
+    public boolean comprarProduto(int codigo, int quantidade) {
+        
+    }
+    
+    public String listarTudo() {
+        String saida = "";
+        
+        for (int i = 0; i < produtos.size(); i++) {
+            saida = saida + produtos.get(i).imprimir() + "\n\n";
+        }
+        return saida;
+    }
+    
+}

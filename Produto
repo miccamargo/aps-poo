@@ -1,0 +1,71 @@
+package appaps;
+
+public abstract class Produto {
+
+    private int codigo, quantidade;
+    private String nome, fabricante;
+    private double valorUnid;
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getFabricante() {
+        return fabricante;
+    }
+
+    public void setFabricante(String fabricante) {
+        this.fabricante = fabricante;
+    }
+
+    public double getValorUnid() {
+        return valorUnid;
+    }
+
+    public void setValorUnid(double valorUnid) {
+        this.valorUnid = valorUnid;
+    }
+
+    public Produto(int codigo, int quantidade, String nome, String fabricante, double valorUnid) {
+        setCodigo(codigo);
+        this.quantidade = quantidade;
+        setNome(nome);
+        setFabricante(fabricante);
+        setValorUnid(valorUnid);
+    }
+
+    public double vender(int quantidade) {
+        this.quantidade = this.quantidade - quantidade;
+        if (this.quantidade <= 0 || this.quantidade < quantidade) {
+            return -1;
+        } else {
+            return this.valorUnid * quantidade;
+        }
+    }
+
+    public void comprar(int quantidade) {
+        this.quantidade += quantidade;
+    }
+
+    public String imprimir() {
+        return "CÃ³digo: " + codigo + "\nNome: " + nome + "\nFabricante: " + fabricante + "\nValor Unitario: "
+                + valorUnid + "\nQuantidade: " + quantidade;
+    }
+
+}

@@ -1,0 +1,212 @@
+package appaps;
+
+import java.util.Scanner;
+import java.time.LocalDate;
+
+public class AppAPS {
+
+    public static void main(String[] args) {
+
+        Scanner entrada = new Scanner(System.in);
+        
+        gerenciarProdutos produtos = new gerenciarProdutos();
+        
+        int opcao, codigo, quantidade;
+        String nome, fabricante;
+        double valorUnid;
+
+        do {
+            
+            System.out.println("Digite: ");
+            System.out.println("1 - Inserir eletronico");
+            System.out.println("2 - Inserir movel");
+            System.out.println("3 - Inserir perecivel");
+            System.out.println("4 - Remover produto por codigo");
+            System.out.println("5 - Buscar produto por codigo");
+            System.out.println("6 - Listar eletronicos");
+            System.out.println("7 - Listar pereciveis");
+            System.out.println("8 - Listar moveis");
+            System.out.println("9 - Listar estoque(s) menor(es) que X");
+            System.out.println("10 - Listar estoque(s) vazio(s)");
+            System.out.println("11 - Listar por fabricante");
+            System.out.println("12 - Listar por validade");
+            System.out.println("13 - Vender produto");
+            System.out.println("14 - Comprar produto");
+            System.out.println("15 - Listar todos os produtos");
+            System.out.println("16 - Sair");
+            
+            opcao = entrada.nextInt();
+            entrada.nextLine();
+            
+            switch (opcao) {
+                case 1:
+                    System.out.println("Cadrasto de Produto Eletronico"
+                            + "\n\nDigite o nome do produto: ");
+                    nome = entrada.nextLine();
+                    System.out.println("Digite o codigo: ");
+                    codigo = entrada.nextInt();
+                    System.out.println("Digite a quantidade: ");
+                    quantidade = entrada.nextInt();
+                    System.out.println("Digite o fabricante: ");
+                    fabricante = entrada.nextLine();
+                    System.out.println("Digite o valor unitario: ");
+                    valorUnid = entrada.nextDouble();
+                    System.out.println("Digite a voltagem: ");
+                    String voltagem = entrada.nextLine();
+                    System.out.println("Digite a eficiencia: ");
+                    String classificacaoEficiencia = entrada.nextLine();
+                    System.out.println("Digite a potencia:");
+                    int potencia = entrada.nextInt();
+                    
+                    Eletronico e = new Eletronico(codigo, quantidade, nome, fabricante, valorUnid, 
+                            voltagem, classificacaoEficiencia, potencia);
+                    
+                    produtos.adicionarProduto(e);
+
+                    break;
+                case 2:
+                    System.out.println("Cadrasto de Produto Movel"
+                            + "\n\nDigite o nome do produto:");
+                    nome = entrada.nextLine();
+                    System.out.println("Digite o codigo:");
+                    codigo = entrada.nextInt();
+                    System.out.println("Digite a quantidade:");
+                    quantidade = entrada.nextInt();
+                    System.out.println("Digite o fabricante:");
+                    fabricante = entrada.nextLine();
+                    System.out.println("Digite o valor unitario:");
+                    valorUnid = entrada.nextDouble();
+                    System.out.println("Digite o material:");
+                    String tipoMaterial = entrada.nextLine();
+                    
+                    Movel m = new Movel(codigo, quantidade, nome, fabricante, valorUnid, tipoMaterial);
+
+                    produtos.adicionarProduto(m);
+                    
+                    break;
+                case 3:
+                    System.out.println("Cadrasto de Produto Perecivel"
+                            + "\n\nDigite o nome do produto:");
+                    nome = entrada.nextLine();
+                    System.out.println("Digite o codigo:");
+                    codigo = entrada.nextInt();
+                    System.out.println("Digite a quantidade:");
+                    quantidade = entrada.nextInt();
+                    System.out.println("Digite o fabricante:");
+                    fabricante = entrada.nextLine();
+                    System.out.println("Digite o valor unitario:");
+                    valorUnid = entrada.nextDouble();
+                    System.out.println("Digite a data de validade:");
+                    LocalDate validade = ;
+
+                    System.out.println("Ã‰ refrigerado?"
+                            + "\nResponda 1 para sim ou 2 para nao");
+                    int resp = entrada.nextInt();
+                    boolean refrigerado;
+                    if (resp == 1) {
+                        refrigerado = true;
+                    } else {
+                        refrigerado = false;
+                    }
+                    
+                    PerecÃ­vel p = new PerecÃ­vel(codigo, quantidade, nome, fabricante, valorUnid, 
+                            validade, refrigerado);
+
+                    produtos.adicionarProduto(p);
+                    
+                    break;
+                case 4:
+                    System.out.println("Digite codigo para remoÃ§Ã£o");
+                    codigo = entrada.nextInt();
+                    entrada.nextLine();
+                    
+                    if(produtos.removerProduto(codigo)) {
+                        System.out.println("Produto removido");
+                    }
+                    else {
+                        System.out.println("Produto nao encontrado");
+                    }
+                    
+                    break;
+                case 5:
+                    System.out.println("Digite codigo para busca");
+                    codigo = entrada.nextInt();
+                    entrada.nextLine();
+                    
+                    Produto buscado = produtos.buscarPorCodigo(codigo);
+                    
+                    if(buscado == null) {
+                        System.out.println("Produto nao encontrado");
+                    }
+                    else {
+                        System.out.println("Dados do produto: ");
+                        System.out.println(buscado.imprimir());
+                    }
+                    
+                    break;
+                case 6:
+                    String pEletronicos = produtos.listarEletronicos();
+                    System.out.println(pEletronicos);
+                    
+                    break;
+                case 7:
+                    String pPereciveis = produtos.listarPereciveis();
+                    System.out.println(pPereciveis);
+                    
+                    break;
+                case 8:
+                    String pMoveis = produtos.listarMoveis();
+                    System.out.println(pMoveis);
+                    
+                    break;
+                case 9:
+                    
+                    break;
+                case 10:
+                    
+                    break;
+                case 11:
+                    System.out.println("Digite o fabricante: ");
+                    fabricante = entrada.nextLine();
+                    
+                    String fab = produtos.listarPorFabricantes(fabricante);
+                    System.out.println(fab);
+                    
+                    break;
+                case 12:
+                    LocalDate hoje = LocalDate.now();
+                    System.out.println("Produtos vencidos hoje " + hoje);
+                            
+                    String val = produtos.listarPorValidade(hoje);
+                    System.out.println(val);
+                    
+                    break;
+                case 13:
+                    
+                    break;
+                case 14:
+                    
+                    break;
+                case 15:
+                    System.out.println(produtos.listarTudo());
+                    
+                    break;
+                case 16:
+                    System.out.println("Saindo...");
+                    
+                    break;
+                default:
+                    System.out.println("Opcao Invalida");
+            }
+        } while (opcao != 16);
+
+    }
+
+    
+    //static void menu() {
+        //System.out.println("=====Escolha o produto que deseja adicionar====="
+           //     + "\n\nDigite 1 para Produto Eletronico"
+             //   + "\nDigite 2 para Produto Movel"
+               // + "\nDigite 3 para Produto Perecivel"
+                //+ "\nPara sair digite 0");
+    }

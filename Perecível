@@ -1,0 +1,23 @@
+package appaps;
+
+import java.time.LocalDate;
+
+public class Perecível extends Produto {
+
+    private LocalDate validade;
+    private boolean refrigerado;
+
+    public Perecível(int codigo, int quantidade, String nome, String fabricante, double valorUnid,
+            LocalDate validade, boolean refrigerado) {
+        super(codigo, quantidade, nome, fabricante, valorUnid);
+        this.validade = validade;
+        this.refrigerado = refrigerado;
+    }
+    
+    @Override
+    public String imprimir() {
+        return super.imprimir() + "\nValidade: " + validade + "\nRefrigerado? " + refrigerado;
+    }    
+    
+    
+}

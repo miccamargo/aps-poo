@@ -14,10 +14,25 @@ public class Perecível extends Produto {
         this.refrigerado = refrigerado;
     }
     
+    public LocalDate getValidade() {
+        return validade;
+    }
+
+    public void setValidade(LocalDate validade) {
+        this.validade = validade;
+    }
+
+    public boolean isRefrigerado() {
+        return refrigerado;
+    }
+
+    public void setRefrigerado(boolean refrigerado) {
+        this.refrigerado = refrigerado;
+    }
+    
     @Override
     public String imprimir() {
         return super.imprimir() + "\nValidade: " + validade + "\nRefrigerado? " + refrigerado;
     }    
-    
     
 }

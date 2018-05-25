@@ -2,6 +2,7 @@ package appaps;
 
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class AppAPS {
 
@@ -97,7 +98,8 @@ public class AppAPS {
                     System.out.println("Digite o valor unitario:");
                     valorUnid = entrada.nextDouble();
                     System.out.println("Digite a data de validade:");
-                    LocalDate validade = ;
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+                    LocalDate validade = LocalDate.parse(entrada.nextLine(), formatter);
 
                     System.out.println("Ã‰ refrigerado?"
                             + "\nResponda 1 para sim ou 2 para nao");
@@ -109,14 +111,14 @@ public class AppAPS {
                         refrigerado = false;
                     }
                     
-                    PerecÃ­vel p = new PerecÃ­vel(codigo, quantidade, nome, fabricante, valorUnid, 
+                    Perecível p = new Perecível(codigo, quantidade, nome, fabricante, valorUnid, 
                             validade, refrigerado);
 
                     produtos.adicionarProduto(p);
                     
                     break;
                 case 4:
-                    System.out.println("Digite codigo para remoÃ§Ã£o");
+                    System.out.println("Digite codigo para remocao");
                     codigo = entrada.nextInt();
                     entrada.nextLine();
                     
@@ -160,10 +162,16 @@ public class AppAPS {
                     
                     break;
                 case 9:
+                    System.out.println("Digite o numero do estoque: ");
+                    int estoque = entrada.nextInt();
+
+                    String minimo = produtos.listarEstoqueMenorQue(estoque);
+                    System.out.println(minimo);
                     
                     break;
                 case 10:
-                    
+                    System.out.println(produtos.listarEstoqueVazio());
+
                     break;
                 case 11:
                     System.out.println("Digite o fabricante: ");
@@ -182,9 +190,21 @@ public class AppAPS {
                     
                     break;
                 case 13:
+                    System.out.println("Digite o codigo do produto para venda: ");
+                    codigo = entrada.nextInt();
+                    System.out.println("Digite a quantidade do produto para venda: ");
+                    quantidade = entrada.nextInt();
+
+                    System.out.println(produtos.venderProduto(codigo, quantidade));
                     
                     break;
                 case 14:
+                    System.out.println("Digite o codigo do produto para compra: ");
+                    codigo = entrada.nextInt();
+                    System.out.println("Digite a quantidade do produto para compra: ");
+                    quantidade = entrada.nextInt();
+
+                    System.out.println(produtos.comprarProduto(codigo, quantidade));
                     
                     break;
                 case 15:
@@ -200,13 +220,4 @@ public class AppAPS {
             }
         } while (opcao != 16);
 
-    }
-
-    
-    //static void menu() {
-        //System.out.println("=====Escolha o produto que deseja adicionar====="
-           //     + "\n\nDigite 1 para Produto Eletronico"
-             //   + "\nDigite 2 para Produto Movel"
-               // + "\nDigite 3 para Produto Perecivel"
-                //+ "\nPara sair digite 0");
     }

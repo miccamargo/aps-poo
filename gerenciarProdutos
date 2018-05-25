@@ -48,7 +48,7 @@ public class gerenciarProdutos {
         String saida = "";
         
         for(int i = 0; i < produtos.size(); i++) {
-            if(produtos.get(i) instanceof PerecÃ­vel)
+            if(produtos.get(i) instanceof Perecível)
                 saida += produtos.get(i).imprimir() + "\n";
         }
         return saida;
@@ -65,11 +65,25 @@ public class gerenciarProdutos {
     }
     
     public String listarEstoqueMenorQue(int quantidadeMinima) {
-        
+        String saida = "";
+
+        for (int i = 0; i < produtos.size(); i++) {
+            if (produtos.get(i).getQuantidade() < quantidadeMinima) {
+                saida += produtos.get(i).imprimir() + "\n";
+            }
+        }
+        return saida;
     }
     
     public String listarEstoqueVazio() {
-        
+        String saida = "";
+
+        for (int i = 0; i < produtos.size(); i++) {
+            if (produtos.get(i).getQuantidade() == 0) {
+                saida += produtos.get(i).imprimir() + "\n";
+            }
+        }
+        return saida;
     }
     
     public String listarPorFabricantes(String fabricante) {
@@ -84,15 +98,38 @@ public class gerenciarProdutos {
     }
     
     public String listarPorValidade(LocalDate validade) {
-        
+        String saida = "";
+
+        for (int i = 0; i < produtos.size(); i++) {
+            if (produtos.get(i) instanceof Perecível) {
+
+                Perecível p = (Perecível) produtos.get(i);
+
+                if (p.getValidade().isEqual(validade)) {
+                    saida += produtos.get(i).imprimir() + "\n";
+                }
+            }
+        }
+        return saida;
     }
     
     public double venderProduto(int codigo, int quantidade) {
-        
+        for (int i = 0; i < produtos.size(); i++) {
+            if (produtos.get(i).getCodigo() == codigo) {
+                return produtos.get(i).vender(quantidade);
+            }
+        }
+        return -1;
     }
     
     public boolean comprarProduto(int codigo, int quantidade) {
-        
+        for (int i = 0; i < produtos.size(); i++) {
+            if (produtos.get(i).getCodigo() == codigo) {
+                produtos.get(i).comprar(quantidade);
+                return true;
+            }
+        }
+        return false;
     }
     
     public String listarTudo() {

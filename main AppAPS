@@ -48,6 +48,7 @@ public class AppAPS {
                     codigo = entrada.nextInt();
                     System.out.println("Digite a quantidade: ");
                     quantidade = entrada.nextInt();
+                    entrada.nextLine();
                     System.out.println("Digite o fabricante: ");
                     fabricante = entrada.nextLine();
                     System.out.println("Digite o valor unitario: ");
@@ -73,10 +74,12 @@ public class AppAPS {
                     codigo = entrada.nextInt();
                     System.out.println("Digite a quantidade:");
                     quantidade = entrada.nextInt();
+                    entrada.nextLine();
                     System.out.println("Digite o fabricante:");
                     fabricante = entrada.nextLine();
                     System.out.println("Digite o valor unitario:");
                     valorUnid = entrada.nextDouble();
+                    entrada.nextLine();
                     System.out.println("Digite o material:");
                     String tipoMaterial = entrada.nextLine();
                     
@@ -93,15 +96,17 @@ public class AppAPS {
                     codigo = entrada.nextInt();
                     System.out.println("Digite a quantidade:");
                     quantidade = entrada.nextInt();
+                    entrada.nextLine();
                     System.out.println("Digite o fabricante:");
                     fabricante = entrada.nextLine();
                     System.out.println("Digite o valor unitario:");
                     valorUnid = entrada.nextDouble();
+                    entrada.nextLine();
                     System.out.println("Digite a data de validade:");
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
                     LocalDate validade = LocalDate.parse(entrada.nextLine(), formatter);
 
-                    System.out.println("Ã‰ refrigerado?"
+                    System.out.println("Eh refrigerado?"
                             + "\nResponda 1 para sim ou 2 para nao");
                     int resp = entrada.nextInt();
                     boolean refrigerado;
@@ -124,8 +129,7 @@ public class AppAPS {
                     
                     if(produtos.removerProduto(codigo)) {
                         System.out.println("Produto removido");
-                    }
-                    else {
+                    } else {
                         System.out.println("Produto nao encontrado");
                     }
                     
@@ -139,26 +143,22 @@ public class AppAPS {
                     
                     if(buscado == null) {
                         System.out.println("Produto nao encontrado");
-                    }
-                    else {
+                    } else {
                         System.out.println("Dados do produto: ");
                         System.out.println(buscado.imprimir());
                     }
                     
                     break;
                 case 6:
-                    String pEletronicos = produtos.listarEletronicos();
-                    System.out.println(pEletronicos);
+                    System.out.println(produtos.listarEletronicos());
                     
                     break;
                 case 7:
-                    String pPereciveis = produtos.listarPereciveis();
-                    System.out.println(pPereciveis);
+                    System.out.println(produtos.listarPereciveis());
                     
                     break;
                 case 8:
-                    String pMoveis = produtos.listarMoveis();
-                    System.out.println(pMoveis);
+                    System.out.println(produtos.listarMoveis());
                     
                     break;
                 case 9:
@@ -177,17 +177,16 @@ public class AppAPS {
                     System.out.println("Digite o fabricante: ");
                     fabricante = entrada.nextLine();
                     
-                    String fab = produtos.listarPorFabricantes(fabricante);
-                    System.out.println(fab);
+                    System.out.println(produtos.listarPorFabricantes(fabricante));
                     
                     break;
                 case 12:
-                    LocalDate hoje = LocalDate.now();
-                    System.out.println("Produtos vencidos hoje " + hoje);
-                            
-                    String val = produtos.listarPorValidade(hoje);
-                    System.out.println(val);
-                    
+                    System.out.println("Digite a data desejada: ");
+                    DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("d/MM/yyyy");
+                    validade = LocalDate.parse(entrada.nextLine(), formatter2);
+
+                    System.out.println(produtos.listarPorValidade(validade));
+
                     break;
                 case 13:
                     System.out.println("Digite o codigo do produto para venda: ");
